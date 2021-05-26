@@ -1,7 +1,6 @@
-const chalk = require('chalk');
-const readLineSync = require('readline-sync');
-const log = console.log;
+const welcomeModule = require('./welcome.js');
+const quizModule = require('./quiz.js');
+const questionsModule = require('./questions.js');
 
-log(chalk.bgBlue.white.bold.underline("HARRY POTTER TRIVIA QUIZ"));
-
-// const user = readLineSync.question('Hi there1')
+const userName = welcomeModule.userName;
+const beginQuiz = welcomeModule.beginQuiz;
