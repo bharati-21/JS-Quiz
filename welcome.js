@@ -13,7 +13,8 @@ const log = console.log;
     margin: 2,
     borderColor: '#4682b4',
     backgroundColor: '#fff',
-    borderStyle: 'double'
+    borderStyle: 'double',
+    align: 'center'
   }
 
   // logging title to the screen
@@ -25,14 +26,26 @@ const log = console.log;
   let beginQuiz = "";
 
   while(beginQuiz!== "exit" && beginQuiz!=="start") {
-     beginQuiz = readLineSync.question(`\nWelcome ${userName}. Enter "start" to play the quiz or "exit" to leave. `).toString().toLowerCase();
+     beginQuiz = readLineSync.question(`\nWelcome ${userName}. Enter "start" to play the quiz or "exit" to leave. `).toLowerCase();
   }
 
   if(beginQuiz == 'exit') {
-    console.log('\n\nSorry to see you go! Do come back and play.');
+    const sorryBox = {
+      padding: 1,
+      margin: {top: 1, bottom: 1, left:0, right: 0},
+      borderStyle: 'round',
+      borderColor: 'red',
+    }
+    console.log(boxen('Sorry to see you go! Do come back and play.', sorryBox));
   }
   else {
-    console.log('\n\nThank you for chossing to play!')
+    const welcomeBox = {
+      padding: 1,
+      margin: {top: 1, bottom: 1, left:0, right: 0},
+      borderStyle: 'round',
+      borderColor: 'green',
+    }
+    console.log(boxen('Thank you for chossing to play!',welcomeBox));
   }
 
 
