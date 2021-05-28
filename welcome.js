@@ -1,9 +1,13 @@
 const chalk = require('chalk');
 const readLineSync = require('readline-sync');
 const boxen = require('boxen');
+const instructions = require('./instructions.js');
 const log = console.log;
 
+var userName = '';
+var beginQuiz = '';
 
+function welcome() {
   // Title text
   const title = chalk.blue.bold("WELCOME TO THE HARRY POTTER TRIVIA QUIZ");
 
@@ -21,15 +25,23 @@ const log = console.log;
   log(boxen(title, titleBox));
 
   // Asking for user's name
-  const userName = readLineSync.question('What is your name? ');
+  userName = readLineSync.question('What is your name? ');
 
   let beginQuiz = "";
 
+  
+
   while(beginQuiz!== "exit" && beginQuiz!=="start") {
-     beginQuiz = readLineSync.question(`\nWelcome ${userName}. Enter "start" to play the quiz or "exit" to leave. `).toLowerCase();
+     log(`\nWelcome`, chalk.bold.blueBright(userName));
+
+    log(instructions.instruction);
+
+     beginQuiz = readLineSync.question(`Enter "start" to play the quiz or "exit" to leave. `).toLowerCase();
+
+     log(instructions.instruction);
   }
 
-  if(beginQuiz == 'exit') {
+  if(beginQuiz === 'exit') {
     const sorryBox = {
       padding: 1,
       margin: {top: 1, bottom: 1, left:0, right: 0},
@@ -41,16 +53,17 @@ const log = console.log;
   else {
     const welcomeBox = {
       padding: 1,
-      margin: {top: 1, bottom: 1, left:0, right: 0},
+      margin: {top: 1, bottom: 0, left:0, right: 0},
       borderStyle: 'round',
       borderColor: 'green',
     }
     console.log(boxen('Thank you for chossing to play!',welcomeBox));
   }
-
+}
 
 
 module.exports = {
-  userName: userName,
+  welcome,
+  userName,
   beginQuiz: beginQuiz.toLowerCase()
 };

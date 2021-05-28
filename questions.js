@@ -88,7 +88,7 @@ const questions = [
   },
 
   {
-    question: `Which animal or bird is the symbol of Ravenclae?\n
+    question: `Which animal or bird is the symbol of Ravenclaw?\n
     a. Raven
     b. Lion
     c. Eagle`,

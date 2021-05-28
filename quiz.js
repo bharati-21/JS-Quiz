@@ -4,14 +4,25 @@ const boxen = require('boxen');
 
 
 var score = 0;
-var index = 0;
-function quiz(questions) {
-  questions.forEach((question, index) => {
-    index  = index;
-    displayQuestion(index+1, question.question, question.answer);
-  });
+var i = 0;
+var numLevels = 0;
+var numQuesAttempted = 0;
 
-  return score;
+function quiz(questions) {
+  
+  for(; i<questions.length; i++) {
+    var question = questions[i];
+    var flag = displayQuestion(i+1, question.question, question.answer);
+    if(!flag) {
+      return {
+        score,
+        numQuesAttempted: 'exit',
+        numLevels
+      };
+    }
+  }
+    
+  return {score, numQuesAttempted, numLevels};
 }
 
 function displayQuestion(index, question, answer) {
@@ -30,15 +41,22 @@ function displayQuestion(index, question, answer) {
 
     userAns = (readLineSync.question(boxen(ques, quesBox))).toLowerCase();
 
-    if(userAns !== 'a' && userAns!== 'b' && userAns!== "c" && userAns!== "exit") {
+    
+    if(userAns === "exit") {
+      return false;
+    }
+  
+    else if(userAns !== 'a' && userAns!== 'b' && userAns!== "c") {
       console.log('Invalid Input. Please attempt the question again.');
     }
-    
   }
+
   checkAnswer(userAns, answer);
+  return true;
 }
 
 function checkAnswer(userAns, answer) {
+  numQuesAttempted++;
   const wrongAnsBox = {
       padding: 1,
       margin: {bottom: 1},
@@ -53,12 +71,32 @@ function checkAnswer(userAns, answer) {
       backgroundColor: '#b3ffb3'
   }
 
-  if(userAns === "exit") process.exit(0);
+  const levelBox = {
+    padding: 1,
+    margin: 2,
+    borderColor: 'cyan',
+    backgroundColor: 'yellow'
+  }
+
+
   if(userAns === answer) {
     console.log(`You answered: ${userAns}`);
     console.log(boxen(chalk.bold.black('Correct Answer'),corAnsBox));
     score++;
+    if(score === 2) {
+      numLevels = 1;
+      console.log(boxen(chalk.bold.blueBright('Congratulations, You have passed level 0!\nProceding to level 1...')));
+    }
+    else if(score === 5) {
+      numLevels = 2;
+      console.log(boxen(chalk.bold.blueBright('Congratulations, You have passed level 1!\nProceding to level 2...')));
+    }
+    else if(score === 8) {
+      numLevels = 3;
+      console.log(boxen(chalk.bold.blueBright('Congratulations, You have passed level 2!\nProceding to final level 3...')));
+    }
   }
+
   else if(userAns !== answer) {
     console.log(`You answered: ${userAns}`);
     console.log(boxen(chalk.bold.black(`Wrong Answer.\nThe correct answer is: ${answer}`), wrongAnsBox));
@@ -68,6 +106,8 @@ function checkAnswer(userAns, answer) {
 
 module.exports = {
   score,
-  index,
-  quiz
+  i,
+  quiz,
+  numLevels,
+  numQuesAttempted
 }
