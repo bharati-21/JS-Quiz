@@ -62,12 +62,12 @@ if(beginQuiz!== 'exit') {
 
   setTimeout(() => {
     console.log(chalk.bgGray.whiteBright.bold.underline("\n\nRETURNING TO MAIN SCREEN...\n\n"));
-  }, 10000);
+  }, 15000);
 
   setTimeout(() => {
       clear();
       welcomeModule.welcome();
-  }, 20000);
+  }, 30000);
 }
 
 
@@ -142,6 +142,7 @@ function calculateScore() {
           text += printScoreCard('green') +  "\n" + chalk.bold.bgGreenBright.black('CONGRATULATIONS. YOU ARE A POTTERHEAD PRO!!');
           console.log(boxen(text, levelThreeBox));
         }
+        
         checkHighScore();
     }
   }, 4000);
@@ -164,7 +165,7 @@ function checkHighScore() {
 
   // Loop thorugh the high data
    highScores.forEach((currScore, index) => {
-      if(score >= highScores[0] && flag!=true) {
+      if(score >= highScores[0] && flag===false) {
           flag = true;
           const item = {
             userName: userName,
@@ -172,16 +173,17 @@ function checkHighScore() {
             numLevels: numLevels,
             score: score
           }
-          highScores.splice(index+1, 0, item);
+          highScores.splice(index, 0, item);
       }
    });
     
-  if(flag == true) {
+  if(flag === true) {
     setTimeout(() => {
         console.log(chalk.bold.underline.magentaBright('\n\nCONGRATULATIONS! YOU ARE A HIGH SCORER!!\n'));
         console.log(chalk.bold.yellow('Please take a screenshot of your score card and send it to me!\n\n'));
 
     }, 6000);
+  }
 
   // Print high scorers
     const box = {
@@ -206,7 +208,7 @@ function checkHighScore() {
     setTimeout( () => {
       console.log(boxen(text, box)); 
     }, 8000);    
-  }     
+      
 }
 
 
