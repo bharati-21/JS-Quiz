@@ -1,3 +1,7 @@
+/*
+  This module holds the highScores module and exports it to the app module
+*/
+
 var highScores = [
   {
     userName: 'Hermione',

@@ -1,4 +1,6 @@
-// This module contains 50 questions related to Harry Potter Trivia
+/* 
+  This module contains 50 questions related to Harry Potter Trivia
+*/
 
 const questions = [
   {
