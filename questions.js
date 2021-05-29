@@ -1,3 +1,5 @@
+// This module contains 50 questions related to Harry Potter Trivia
+
 const questions = [
   {
     question: `In the order they taught, who were the six Defence Against the Dark Arts professors who taught Harry at Hogwarts?\n

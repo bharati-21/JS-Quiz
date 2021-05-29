@@ -16,13 +16,14 @@ function quiz(questions) {
     if(!flag) {
       return {
         score,
-        numQuesAttempted: 'exit',
-        numLevels
+        numQuesAttempted: i,
+        numLevels,
+        finishedAbruptly: true
       };
     }
   }
     
-  return {score, numQuesAttempted, numLevels};
+  return {score, numQuesAttempted, numLevels, finishedAbruptly: false};
 }
 
 function displayQuestion(index, question, answer) {
