@@ -17,7 +17,7 @@ const instructionBody = `
     7. There are 4 levels: level 0, level 1, level 2, and level 3.
     8. Answer 2 questions correctly, you go to level 1.
     9. Answer 5 questions correctly, you go to level 2
-    10. Answer 8 questions , you go to level 3.\n
+    10. Answer 8 questions correctly, you go to level 3.\n
   `;
 
   // Instruction styles
