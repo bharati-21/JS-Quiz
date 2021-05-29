@@ -8,6 +8,7 @@ const boxen = require('boxen');
 const chalk = require('chalk');
 const ora = require('ora');
 const Spinner = require('cli-spinner').Spinner;
+const readLineSync = require('readline-sync');
 
 // Importing all required modules
 /*
@@ -25,12 +26,9 @@ const quizModule = require('./quiz.js');
 const highScore = require('./highscores.js');
 
 
-// Calling the welcome(). Prints instructions and welcome message
-welcomeModule.welcome();
-
 // Variables to hold user names and whether user wishes to take the quiz
-const userName = welcomeModule.userName;
-const beginQuiz = welcomeModule.beginQuiz;
+var userName = "";
+var beginQuiz = "";
 
 
 // Variables to hold score, level users passed, number of questions user has attempted and whether user exited the quiz abruptly.
@@ -39,35 +37,39 @@ var numLevels = 0;
 var numQuesAttempted = 0;
 var finishedAbruptly = false;
 
+start();
 
-/*/
-  If user chooses to "start" the quiz, then:
-  1. Generate questions
-  2. Call quiz() to display questions, take user answer input, check answer and update score.
-  3. Save the quiz results and update "score", "numLevels", "numQuesAttempted" and "finishedAbruptly" Variables
-  4. Call calculateScore() to print the final score card
-*/
-if(beginQuiz!== 'exit') {
-  const generateQuestions = generateQuestionsModule.generateQuestions;
-  const uniqueQues = generateQuestions(questionsModule.questions);
+// The main function in the module
 
-  const quiz = quizModule.quiz;  
+function start() {
+  // Calling the welcome(). Prints instructions and welcome message
+  welcomeModule.welcome();
+  
+  userName = welcomeModule.userName;
+  beginQuiz = welcomeModule.beginQuiz;
 
-  const quizResults = quiz(uniqueQues);
-  score = quizResults.score;
-  numQuesAttempted = quizResults.numQuesAttempted;
-  numLevels = quizResults.numLevels;
-  finishedAbruptly = quizResults.finishedAbruptly;
-  calculateScore();
 
-  setTimeout(() => {
-    console.log(chalk.bgGray.whiteBright.bold.underline("\n\nRETURNING TO MAIN SCREEN...\n\n"));
-  }, 15000);
+  /*/
+    If user chooses to "start" the quiz, then:
+    1. Generate questions
+    2. Call quiz() to display questions, take user answer input, check answer and update score.
+    3. Save the quiz results and update "score", "numLevels", "numQuesAttempted" and "finishedAbruptly" Variables
+    4. Call calculateScore() to print the final score card
+  */
 
-  setTimeout(() => {
-      clear();
-      welcomeModule.welcome();
-  }, 30000);
+  if(beginQuiz !== 'exit') {
+    const generateQuestions = generateQuestionsModule.generateQuestions;
+    const uniqueQues = generateQuestions(questionsModule.questions);
+
+    const quiz = quizModule.quiz;  
+
+    const quizResults = quiz(uniqueQues);
+    score = quizResults.score;
+    numQuesAttempted = quizResults.numQuesAttempted;
+    numLevels = quizResults.numLevels;
+    finishedAbruptly = quizResults.finishedAbruptly;
+    calculateScore();      
+  }
 }
 
 
@@ -142,7 +144,7 @@ function calculateScore() {
           text += printScoreCard('green') +  "\n" + chalk.bold.bgGreenBright.black('CONGRATULATIONS. YOU ARE A POTTERHEAD PRO!!');
           console.log(boxen(text, levelThreeBox));
         }
-        
+
         checkHighScore();
     }
   }, 4000);
@@ -165,26 +167,13 @@ function checkHighScore() {
 
   // Loop thorugh the high data
    highScores.forEach((currScore, index) => {
-      if(score >= highScores[0] && flag===false) {
+      if(score >= currScore.score && flag===false) {
           flag = true;
-          const item = {
-            userName: userName,
-            numQuesAttempted: numQuesAttempted,
-            numLevels: numLevels,
-            score: score
-          }
-          highScores.splice(index, 0, item);
+          console.log(chalk.bold.underline.magentaBright('\n\nCONGRATULATIONS! YOU ARE A HIGH SCORER!!\n'));
+          console.log(chalk.bold.yellow('Please take a screenshot of your score card and send it to me!\n\n'));
       }
    });
     
-  if(flag === true) {
-    setTimeout(() => {
-        console.log(chalk.bold.underline.magentaBright('\n\nCONGRATULATIONS! YOU ARE A HIGH SCORER!!\n'));
-        console.log(chalk.bold.yellow('Please take a screenshot of your score card and send it to me!\n\n'));
-
-    }, 6000);
-  }
-
   // Print high scorers
     const box = {
           padding: 1,
@@ -197,18 +186,19 @@ function checkHighScore() {
     var text = chalk.bold.underline.red('HIGH SCORERS');
     highScores.forEach((player) => {
         text+= chalk`
-         \nNAME: {red ${player.userName}}
-         \nNUMBER OF LEVELS PASSED: {red ${player.numLevels}}
-         \nNUMBER OF QUESTIONS ATTEMPTED: {red ${player.numQuesAttempted}}
-         \nFINAL SCORE: {red ${player.score}}
+         \n{black NAME:} {red ${player.userName}}
+         \n{black NUMBER OF LEVELS PASSED:} {red ${player.numLevels}}
+         \n{black NUMBER OF QUESTIONS ATTEMPTED:} {red ${player.numQuesAttempted}}
+         \n{black FINAL SCORE:} {red ${player.score}}
          \n
         `;
     });
 
-    setTimeout( () => {
-      console.log(boxen(text, box)); 
-    }, 8000);    
-      
+
+    setTimeout(() => {
+    console.log(boxen(text, box));       
+
+    }, 7000);
 }
 
 
