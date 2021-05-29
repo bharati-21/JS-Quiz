@@ -1,11 +1,18 @@
-// This module welcomes the user and prints instructions. 
-// This module also gives chance to choose whether she/ he wants to tae the quiz or leave
+/*
+ This module welcomes the user and prints instructions. 
+ This module also gives user a chance to choose whether they wants to take the quiz or leave.
+*/
 
+
+// Importing required libraries
 const chalk = require('chalk');
 const readLineSync = require('readline-sync');
 const boxen = require('boxen');
-const instructions = require('./instructions.js');
 const log = console.log;
+
+// Importing required modules
+const instructions = require('./instructions.js');
+
 
 var userName = '';
 var beginQuiz = '';
@@ -41,7 +48,6 @@ function welcome() {
   // Until user enters "exit" or "start"
   while(beginQuiz!== "exit" && beginQuiz!=="start") {
      beginQuiz = readLineSync.question(`Enter "start" to play the quiz or "exit" to leave. `).toLowerCase();
-
   }
 
   if(beginQuiz === 'exit') {
