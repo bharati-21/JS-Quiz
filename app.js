@@ -163,7 +163,7 @@ function checkHighScore() {
    var flag = false;
 
   // Loop thorugh the high data
-   highscores.forEach((currScore, index) => {
+   highScores.forEach((currScore, index) => {
       if(score >= highScores[0] && flag!=true) {
           flag = true;
           const item = {
