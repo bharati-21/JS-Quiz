@@ -1,7 +1,7 @@
 # HARRY POTTER QUIZ
 A CLI fun quiz app using node.js that tests how much of a potterhead you are!
 
-[Take the quiz here](https://replit.com/@bhaaratii/how-well-do-you-know-me?embed=1&output=1#README.md)
+[Take the quiz here](https://replit.com/@bhaaratii/JS-Quiz-1?embed=1&output=1#README.md)
 
 
 ## USER DEFINED MODULES IN THE APPLICATION
