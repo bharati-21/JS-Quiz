@@ -43,10 +43,10 @@ start();
 
 function start() {
   // Calling the welcome(). Prints instructions and welcome message
-  welcomeModule.welcome();
+  const welcomeModuleResults = welcomeModule.welcome();
   
-  userName = welcomeModule.userName;
-  beginQuiz = welcomeModule.beginQuiz;
+  userName = welcomeModuleResults.userName;
+  beginQuiz = welcomeModuleResults.beginQuiz;
 
 
   /*/

@@ -40,8 +40,7 @@ function welcome() {
   // Welcoming the user
   log(`\nWelcome`, chalk.bold.blueBright(userName));
 
-  let beginQuiz = "";
-  
+ 
   // Logging instructions on the screen from the "instructions" module
   log(instructions.instruction);
 
@@ -71,11 +70,14 @@ function welcome() {
     }
     console.log(boxen('Thank you for chossing to play!',welcomeBox));
   }
+
+  return {
+    userName,
+    beginQuiz: beginQuiz.toLowerCase()
+  };
 }
 
 // Exporting username, welcome() and begin quiz
 module.exports = {
-  welcome,
-  userName,
-  beginQuiz: beginQuiz.toLowerCase()
+  welcome
 };
