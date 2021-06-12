@@ -185,7 +185,7 @@ function checkHighScore() {
 
     var text = chalk.bold.underline.red('HIGH SCORERS');
     highScores.forEach((player) => {
-        text+= chalk`
+        text+= chalk.bold`
          \n{black NAME:} {red ${player.userName}}
          \n{black NUMBER OF LEVELS PASSED:} {red ${player.numLevels}}
          \n{black NUMBER OF QUESTIONS ATTEMPTED:} {red ${player.numQuesAttempted}}
