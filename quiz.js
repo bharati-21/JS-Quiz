@@ -8,6 +8,7 @@
 const readLineSync = require('readline-sync');
 const chalk = require('chalk');
 const boxen = require('boxen');
+const wrap = require('word-wrap');
 
 
 var score = 0;
@@ -36,16 +37,21 @@ function quiz(questions) {
 function displayQuestion(index, question, answer) {
   var userAns = "";
   while(userAns !== 'a' && userAns!== 'b' && userAns!== "c" && userAns!== "exit") {
-    const ques = chalk.bold.black(`${index}. ${question}`);
+    const wrapQues = wrap((index + ". " + question), {
+    width: 55
+    });
+    const ques = chalk.bold.blackBright(`${wrapQues}`);
+  
 
     const quesBox = {
       padding: 1,
       margin: {left:0, top:1, right:0, bottom:1},
-      borderColor: '#fff',
       backgroundColor: '#fff',
     }
 
-    userAns = (readLineSync.question(boxen(ques, quesBox))).toLowerCase();
+    // userAns = (readLineSync.question(boxen(ques, quesBox))).toLowerCase();
+    userAns = (readLineSync.question(boxen(ques,quesBox))).toLowerCase();
+
     
     if(userAns === "exit") {
       return false;
