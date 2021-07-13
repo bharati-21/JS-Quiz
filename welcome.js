@@ -36,9 +36,9 @@ function welcome() {
 
   // Asking for user's name
   do {
-    serName = readLineSync.question('What is your name? ');
+    userName = readLineSync.question('What is your name? ');
   }
-  while(userName === '' || userName === null);
+  while(userName === null || userName === "");
 
   // Welcoming the user
   log(`\nWelcome`, chalk.bold.blueBright(userName));

@@ -26,14 +26,10 @@ const instructionBody = `
 	  margin: {top: 1, right: 0, bottom: 1, left:0},
 	  borderColor: 'yellow',
   	backgroundColor: 'black',
-	  borderStyle: {
-		  topLeft: '+',
-		  topRight: '+',
-		  bottomLeft: '+',
-		  bottomRight: '+',
-		  horizontal: '-',
-		  vertical: '|'
-    }
+	  // borderStyle: {
+		//   horizontal: '-',
+		//   vertical: '|'
+    // }
   };
 
 // exporting the instruction which is used by "welcome" module
