@@ -33,7 +33,7 @@ const instructionBody = `HOW TO ATTEMPT THIS QUIZ?\n\n
 
 
 
-console.log(size.width);
+// console.log(size.width);
 
 // exporting the instruction which is used by "welcome" module
 module.exports = {

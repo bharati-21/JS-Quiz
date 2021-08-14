@@ -113,7 +113,7 @@ function calculateScore() {
 
   setTimeout(() => {
     spinner.stop(true);
-    clear();
+    // clear(false);
       
     // If the user ended the quiz abruptly
     if(finishedAbruptly === true) {
