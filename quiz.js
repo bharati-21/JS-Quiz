@@ -93,6 +93,7 @@ function checkAnswer(userAns, answer) {
     console.log(`You answered: ${userAns}`);
     console.log(boxen(chalk.bold.black('Correct Answer'),corAnsBox));
     score++;
+    console.log(chalk.bold.black.yellowBright(`Your Score: ${score}\n`));
     if(score === 2) {
       numLevels++;
       console.log(boxen(chalk.bold.blueBright('Congratulations, You have passed level 0!\nProceding to level 1...')));
@@ -110,6 +111,7 @@ function checkAnswer(userAns, answer) {
   else if(userAns !== answer) {
     console.log(`You answered: ${userAns}`);
     console.log(boxen(chalk.bold.black(`Wrong Answer.\nThe correct answer is: ${answer}`), wrongAnsBox));
+    console.log(chalk.bold.black.yellowBright(`Your Score: ${score}\n`));
   }
 
 }
