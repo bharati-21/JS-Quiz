@@ -147,7 +147,7 @@ function calculateScore() {
 
         checkHighScore();
     }
-  }, 4000);
+  }, 2000);
 }
 
 
